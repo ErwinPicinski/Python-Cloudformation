@@ -1,0 +1,3 @@
+ACCESS_KEY_ID=""
+SECCRET_KEY=""
+REGION='eu-central-1'

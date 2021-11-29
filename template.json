@@ -1,0 +1,39 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Template to Create an IAM Role",
+    "Parameters" : {
+        "RoleName" : {
+          "Type" : "String",
+          "Default" : "New_role",
+          "Description" : "Provide role name"
+        }
+    },
+    "Resources": {
+        "Role": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "RoleName": { "Ref" : "RoleName" },
+                "Description": "Provide access to S3",
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "lambda.amazonaws.com"
+                                ]
+                            },
+                            "Action": [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                },
+                "ManagedPolicyArns": [
+                    "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+                ]               
+            }
+        }
+    }
+}
